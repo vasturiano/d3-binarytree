@@ -39,7 +39,7 @@ function add(tree, x, d) {
 }
 
 export function addAll(data) {
-  var d, i, n = data.length,
+  var i, n = data.length,
       x,
       xz = new Array(n),
       x0 = Infinity,
@@ -47,7 +47,7 @@ export function addAll(data) {
 
   // Compute the points and their extent.
   for (i = 0; i < n; ++i) {
-    if (isNaN(x = +this._x.call(null, d = data[i]))) continue;
+    if (isNaN(x = +this._x.call(null, data[i]))) continue;
     xz[i] = x;
     if (x < x0) x0 = x;
     if (x > x1) x1 = x;
