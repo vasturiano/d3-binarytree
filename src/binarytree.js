@@ -10,18 +10,15 @@ import tree_visit from "./visit";
 import tree_visitAfter from "./visitAfter";
 import tree_x, {defaultX} from "./x";
 
-export default function binarytree(nodes, x, y) {
-  var tree = new Binarytree(x == null ? defaultX : x, y == null ? defaultY : y, NaN, NaN, NaN, NaN);
+export default function binarytree(nodes, x) {
+  var tree = new Binarytree(x == null ? defaultX : x, NaN, NaN);
   return nodes == null ? tree : tree.addAll(nodes);
 }
 
-function Binarytree(x, y, x0, y0, x1, y1) {
+function Binarytree(x, x0, x1) {
   this._x = x;
-  this._y = y;
   this._x0 = x0;
-  this._y0 = y0;
   this._x1 = x1;
-  this._y1 = y1;
   this._root = undefined;
 }
 
@@ -34,7 +31,7 @@ function leaf_copy(leaf) {
 var treeProto = binarytree.prototype = Binarytree.prototype;
 
 treeProto.copy = function() {
-  var copy = new Binarytree(this._x, this._y, this._x0, this._y0, this._x1, this._y1),
+  var copy = new Binarytree(this._x, this._x0, this._x1),
       node = this._root,
       nodes,
       child;
@@ -43,11 +40,11 @@ treeProto.copy = function() {
 
   if (!node.length) return copy._root = leaf_copy(node), copy;
 
-  nodes = [{source: node, target: copy._root = new Array(4)}];
+  nodes = [{source: node, target: copy._root = new Array(2)}];
   while (node = nodes.pop()) {
-    for (var i = 0; i < 4; ++i) {
+    for (var i = 0; i < 2; ++i) {
       if (child = node.source[i]) {
-        if (child.length) nodes.push({source: child, target: node.target[i] = new Array(4)});
+        if (child.length) nodes.push({source: child, target: node.target[i] = new Array(2)});
         else node.target[i] = leaf_copy(child);
       }
     }

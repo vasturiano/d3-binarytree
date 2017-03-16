@@ -1,25 +1,19 @@
 export default function(d) {
-  var x = +this._x.call(null, d),
-      y = +this._y.call(null, d);
-  return add(this.cover(x, y), x, y, d);
+  var x = +this._x.call(null, d);
+  return add(this.cover(x), x, d);
 }
 
-function add(tree, x, y, d) {
-  if (isNaN(x) || isNaN(y)) return tree; // ignore invalid points
+function add(tree, x, d) {
+  if (isNaN(x)) return tree; // ignore invalid points
 
   var parent,
       node = tree._root,
       leaf = {data: d},
       x0 = tree._x0,
-      y0 = tree._y0,
       x1 = tree._x1,
-      y1 = tree._y1,
       xm,
-      ym,
       xp,
-      yp,
       right,
-      bottom,
       i,
       j;
 
@@ -29,56 +23,45 @@ function add(tree, x, y, d) {
   // Find the existing leaf for the new point, or add it.
   while (node.length) {
     if (right = x >= (xm = (x0 + x1) / 2)) x0 = xm; else x1 = xm;
-    if (bottom = y >= (ym = (y0 + y1) / 2)) y0 = ym; else y1 = ym;
-    if (parent = node, !(node = node[i = bottom << 1 | right])) return parent[i] = leaf, tree;
+    if (parent = node, !(node = node[i = +right])) return parent[i] = leaf, tree;
   }
 
   // Is the new point is exactly coincident with the existing point?
   xp = +tree._x.call(null, node.data);
-  yp = +tree._y.call(null, node.data);
-  if (x === xp && y === yp) return leaf.next = node, parent ? parent[i] = leaf : tree._root = leaf, tree;
+  if (x === xp) return leaf.next = node, parent ? parent[i] = leaf : tree._root = leaf, tree;
 
   // Otherwise, split the leaf node until the old and new point are separated.
   do {
-    parent = parent ? parent[i] = new Array(4) : tree._root = new Array(4);
+    parent = parent ? parent[i] = new Array(2) : tree._root = new Array(2);
     if (right = x >= (xm = (x0 + x1) / 2)) x0 = xm; else x1 = xm;
-    if (bottom = y >= (ym = (y0 + y1) / 2)) y0 = ym; else y1 = ym;
-  } while ((i = bottom << 1 | right) === (j = (yp >= ym) << 1 | (xp >= xm)));
+  } while ((i = +right) === (j = +(xp >= xm)));
   return parent[j] = node, parent[i] = leaf, tree;
 }
 
 export function addAll(data) {
   var d, i, n = data.length,
       x,
-      y,
       xz = new Array(n),
-      yz = new Array(n),
       x0 = Infinity,
-      y0 = Infinity,
-      x1 = -Infinity,
-      y1 = -Infinity;
+      x1 = -Infinity;
 
   // Compute the points and their extent.
   for (i = 0; i < n; ++i) {
-    if (isNaN(x = +this._x.call(null, d = data[i])) || isNaN(y = +this._y.call(null, d))) continue;
+    if (isNaN(x = +this._x.call(null, d = data[i]))) continue;
     xz[i] = x;
-    yz[i] = y;
     if (x < x0) x0 = x;
     if (x > x1) x1 = x;
-    if (y < y0) y0 = y;
-    if (y > y1) y1 = y;
   }
 
   // If there were no (valid) points, inherit the existing extent.
   if (x1 < x0) x0 = this._x0, x1 = this._x1;
-  if (y1 < y0) y0 = this._y0, y1 = this._y1;
 
   // Expand the tree to cover the new points.
-  this.cover(x0, y0).cover(x1, y1);
+  this.cover(x0).cover(x1);
 
   // Add the new points.
   for (i = 0; i < n; ++i) {
-    add(this, xz[i], yz[i], data[i]);
+    add(this, xz[i], data[i]);
   }
 
   return this;
