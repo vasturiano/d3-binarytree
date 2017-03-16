@@ -4,6 +4,8 @@ Ported version of D3's [Quadtree](https://github.com/d3/d3-quadtree), to use wit
 
 A [binary tree](https://en.wikipedia.org/wiki/Binary_tree) recursively partitions arrays into segments, dividing each array into two equally-sized halves. Each distinct point exists in a unique leaf [node](#nodes); coincident points are represented by a linked list. Binary trees can accelerate various spatial operations, such as the [Barnes–Hut approximation](https://en.wikipedia.org/wiki/Barnes–Hut_simulation) for computing many-body forces, collision detection, and searching for nearby points.
 
+See also [d3-quadtree](https://github.com/d3/d3-quadtree) and [d3-octree](https://github.com/vasturiano/d3-octree).
+
 ## Installing
 
 If you use NPM, `npm install d3-binarytree`. Otherwise, download the [latest release](https://github.com/vasturiano/d3-binarytree/releases/latest). AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3` global is exported:
