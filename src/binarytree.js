@@ -9,14 +9,13 @@ import tree_size from "./size";
 import tree_visit from "./visit";
 import tree_visitAfter from "./visitAfter";
 import tree_x, {defaultX} from "./x";
-import tree_y, {defaultY} from "./y";
 
-export default function quadtree(nodes, x, y) {
-  var tree = new Quadtree(x == null ? defaultX : x, y == null ? defaultY : y, NaN, NaN, NaN, NaN);
+export default function binarytree(nodes, x, y) {
+  var tree = new Binarytree(x == null ? defaultX : x, y == null ? defaultY : y, NaN, NaN, NaN, NaN);
   return nodes == null ? tree : tree.addAll(nodes);
 }
 
-function Quadtree(x, y, x0, y0, x1, y1) {
+function Binarytree(x, y, x0, y0, x1, y1) {
   this._x = x;
   this._y = y;
   this._x0 = x0;
@@ -32,10 +31,10 @@ function leaf_copy(leaf) {
   return copy;
 }
 
-var treeProto = quadtree.prototype = Quadtree.prototype;
+var treeProto = binarytree.prototype = Binarytree.prototype;
 
 treeProto.copy = function() {
-  var copy = new Quadtree(this._x, this._y, this._x0, this._y0, this._x1, this._y1),
+  var copy = new Binarytree(this._x, this._y, this._x0, this._y0, this._x1, this._y1),
       node = this._root,
       nodes,
       child;
@@ -70,4 +69,3 @@ treeProto.size = tree_size;
 treeProto.visit = tree_visit;
 treeProto.visitAfter = tree_visitAfter;
 treeProto.x = tree_x;
-treeProto.y = tree_y;

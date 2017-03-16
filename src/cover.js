@@ -6,7 +6,7 @@ export default function(x, y) {
       x1 = this._x1,
       y1 = this._y1;
 
-  // If the quadtree has no extent, initialize them.
+  // If the binarytree has no extent, initialize them.
   // Integer extent are necessary so that if we later double the extent,
   // the existing quadrant boundaries don’t change due to floating point error!
   if (isNaN(x0)) {
@@ -47,7 +47,7 @@ export default function(x, y) {
     if (this._root && this._root.length) this._root = node;
   }
 
-  // If the quadtree covers the point already, just return.
+  // If the binarytree covers the point already, just return.
   else return this;
 
   this._x0 = x0;
