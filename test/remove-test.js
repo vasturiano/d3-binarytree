@@ -94,7 +94,7 @@ tape("binarytree.remove(datum) removes another point in the binarytree", functio
   var q = d3_binarytree.binarytree()
       .extent([[0], [959]])
       .addAll([[630], [715], [523], [646], [434], [570], [520], [459], [346], [529]]);
-  test.equal(q.remove(q.find(546)), q);
+  test.equal(q.remove(q.find(582)), q);
   test.deepEqual(q.extent(), [[0], [1024]]);
   test.deepEqual(q.root(), [
     [

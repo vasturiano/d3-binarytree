@@ -44,7 +44,7 @@ export default function(x, radius) {
 
     // Visit this point. (Visiting coincident points isn’t necessary!)
     else {
-      var d = x - +this._x.call(null, node.data);
+      var d = Math.abs(x - +this._x.call(null, node.data));
       if (d < radius) {
         radius = d;
         x0 = x - d;
