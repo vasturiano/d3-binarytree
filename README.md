@@ -10,10 +10,10 @@ See also [d3-quadtree](https://github.com/d3/d3-quadtree) and [d3-octree](https:
 
 ## Installing
 
-If you use NPM, `npm install d3-binarytree`. Otherwise, download the [latest release](https://github.com/vasturiano/d3-binarytree/releases/latest). AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3` global is exported:
+If you use NPM, `npm install d3-binarytree`. You can also load directly from the global [npmJS](https://npmjs.com) registry, as a bundled [standalone library](https://unpkg.com/d3-binarytree). AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3` global is exported:
 
 ```html
-<script src="https://unpkg.com/d3-binarytree/build/d3-binarytree.min.js"></script>
+<script src="https://unpkg.com/d3-binarytree"></script>
 <script>
 
 var binarytree = d3.binarytree();
