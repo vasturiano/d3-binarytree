@@ -10,20 +10,20 @@ tape("binarytree.add(datum) creates a new point and adds it to the binarytree", 
 });
 
 tape("binarytree.add(datum) handles points being on the perimeter of the binarytree bounds", function(test) {
-  var results = [], q = d3_binarytree.binarytree().extent([[0], [1]]);
+  var q = d3_binarytree.binarytree().extent([[0], [1]]);
   test.deepEqual(q.add([0]).root(), {data: [0]});
   test.deepEqual(q.add([1]).root(), [{data: [0]}, {data: [1]}]);
   test.end();
 });
 
 tape("binarytree.add(datum) handles points being to the left of the binarytree bounds", function(test) {
-  var results = [], q = d3_binarytree.binarytree().extent([[0], [2]]);
+  var q = d3_binarytree.binarytree().extent([[0], [2]]);
   test.deepEqual(q.add([-1]).extent(), [[-2], [2]]);
   test.end();
 });
 
 tape("binarytree.add(datum) handles points being to the right of the binarytree bounds", function(test) {
-  var results = [], q = d3_binarytree.binarytree().extent([[0], [2]]);
+  var q = d3_binarytree.binarytree().extent([[0], [2]]);
   test.deepEqual(q.add([3]).extent(), [[0], [4]]);
   test.end();
 });
