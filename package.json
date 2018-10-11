@@ -15,7 +15,7 @@
     "name": "Vasco Asturiano",
     "url": "http://bl.ocks.org/vasturiano"
   },
-  "main": "dist/d3-binaryree.js",
+  "main": "dist/d3-binarytree.js",
   "unpkg": "dist/d3-binarytree.min.js",
   "jsdelivr": "dist/d3-binarytree.min.js",
   "module": "src/index.js",
