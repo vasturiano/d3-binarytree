@@ -1,6 +1,9 @@
-# d3-binarytree
+d3-binarytree
+==============
 
-[![NPM](https://nodei.co/npm/d3-binarytree.png?compact=true)](https://nodei.co/npm/d3-binarytree/)
+[![NPM package][npm-img]][npm-url]
+[![Build Size][build-size-img]][build-size-url]
+[![Dependencies][dependencies-img]][dependencies-url]
 
 Ported version of D3's [Quadtree](https://github.com/d3/d3-quadtree), to use with one-dimensional data structures, by removing the y coordinate.
 
@@ -150,3 +153,11 @@ if (!node.length) do console.log(node.data); while (node = node.next);
 ```
 
 The point’s *x*--coordinate **must not be modified** while the point is in the binarytree. To update a point’s position, [remove](#binarytree_remove) the point and then re-[add](#binarytree_add) it to the binarytree at the new position. Alternatively, you may discard the existing binarytree entirely and create a new one from scratch; this may be more efficient if many of the points have moved.
+
+
+[npm-img]: https://img.shields.io/npm/v/d3-binarytree.svg
+[npm-url]: https://npmjs.org/package/d3-binarytree
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-binarytree.svg
+[build-size-url]: https://bundlephobia.com/result?p=d3-binarytree
+[dependencies-img]: https://img.shields.io/david/vasturiano/d3-binarytree.svg
+[dependencies-url]: https://david-dm.org/vasturiano/d3-binarytree
