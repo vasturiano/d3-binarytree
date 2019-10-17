@@ -94,7 +94,7 @@ Removes the specified *datum* to the binarytree, deriving its coordinates ⟨*x*
 <a name="binarytree_removeAll" href="#binarytree_removeAll">#</a> <i>binarytree</i>.<b>removeAll</b>(<i>data</i>)
  [<>](https://github.com/d3/d3-binarytree/blob/master/src/remove.js#L53 "Source")
 
-Removes the specified *data* from the binarytree, deriving their coordinates ⟨*x*⟩ using the current [*x*-](#binarytree_x)accessor, and returns the binarytree. If a specified *datum* does not exist in this quadtree, it is ignored.
+Removes the specified *data* from the binarytree, deriving their coordinates ⟨*x*⟩ using the current [*x*-](#binarytree_x)accessor, and returns the binarytree. If a specified *datum* does not exist in this binarytree, it is ignored.
 
 <a name="binarytree_copy" href="#binarytree_copy">#</a> <i>binarytree</i>.<b>copy</b>()
 
