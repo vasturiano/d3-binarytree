@@ -49,7 +49,7 @@ tape("binarytree.remove(datum) removes a non-root point in the binarytree", func
       p1 = [1],
       q = d3_binarytree.binarytree().addAll([p0, p1]);
   test.equal(q.remove(p0), q);
-  test.deepEqual(q.extent(), [[0], [1]]);
+  test.deepEqual(q.extent(), [[0], [2]]);
   test.equal(q.root().data, p1);
   test.deepEqual(p0, [0]);
   test.deepEqual(p1, [1]);
@@ -61,7 +61,7 @@ tape("binarytree.remove(datum) removes another non-root point in the binarytree"
       p1 = [1],
       q = d3_binarytree.binarytree().addAll([p0, p1]);
   test.equal(q.remove(p1), q);
-  test.deepEqual(q.extent(), [[0], [1]]);
+  test.deepEqual(q.extent(), [[0], [2]]);
   test.equal(q.root().data, p0);
   test.deepEqual(p0, [0]);
   test.deepEqual(p1, [1]);

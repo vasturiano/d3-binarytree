@@ -4,8 +4,8 @@ var tape = require("tape"),
 tape("binarytree.add(datum) creates a new point and adds it to the binarytree", function(test) {
   var q = d3_binarytree.binarytree();
   test.deepEqual(q.add([0]).root(), {data: [0]});
-  test.deepEqual(q.add([1]).root(), [{data: [0]}, {data: [1]}]);
-  test.deepEqual(q.add([0.4]).root(), [[{data: [0]}, {data: [0.4]}], {data: [1]}]);
+  test.deepEqual(q.add([0.9]).root(), [{data: [0]}, {data: [0.9]}]);
+  test.deepEqual(q.add([0.4]).root(), [[{data: [0]}, {data: [0.4]}], {data: [0.9]}]);
   test.end();
 });
 
@@ -18,7 +18,7 @@ tape("binarytree.add(datum) handles points being on the perimeter of the binaryt
 
 tape("binarytree.add(datum) handles points being to the left of the binarytree bounds", function(test) {
   var q = d3_binarytree.binarytree().extent([[0], [2]]);
-  test.deepEqual(q.add([-1]).extent(), [[-2], [2]]);
+  test.deepEqual(q.add([-1]).extent(), [[-4], [4]]);
   test.end();
 });
 

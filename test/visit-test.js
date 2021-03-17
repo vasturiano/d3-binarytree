@@ -6,9 +6,9 @@ tape("binarytree.visit(callback) visits each node in a binarytree", function(tes
       .addAll([[0], [1]]);
   test.equal(q.visit(function(node, x0, x1) { results.push([x0, x1]); }), q);
   test.deepEqual(results, [
-    [0.0, 1.0],
-    [0.0, 0.5],
-    [0.5, 1.0]
+    [0, 2],
+    [0, 1],
+    [1, 2]
   ]);
   test.end();
 });

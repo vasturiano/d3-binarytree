@@ -12,30 +12,23 @@ export default function(x) {
   }
 
   // Otherwise, double repeatedly to cover.
-  else if (x0 > x || x > x1) {
-    var z = x1 - x0,
+  else {
+    var z = x1 - x0 || 1,
         node = this._root,
         parent,
         i;
 
-    switch (i = +(x < (x0 + x1) / 2)) {
-      case 0: {
-        do parent = new Array(2), parent[i] = node, node = parent;
-        while (z *= 2, x1 = x0 + z, x > x1);
-        break;
-      }
-      case 1: {
-        do parent = new Array(2), parent[i] = node, node = parent;
-        while (z *= 2, x0 = x1 - z, x0 > x);
-        break;
+    while (x0 > x || x >= x1) {
+      i = +(x < x0);
+      parent = new Array(2), parent[i] = node, node = parent, z *= 2;
+      switch (i) {
+        case 0: x1 = x0 + z; break;
+        case 1: x0 = x1 - z; break;
       }
     }
 
     if (this._root && this._root.length) this._root = node;
   }
-
-  // If the binarytree covers the point already, just return.
-  else return this;
 
   this._x0 = x0;
   this._x1 = x1;

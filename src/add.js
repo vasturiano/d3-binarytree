@@ -53,8 +53,8 @@ export function addAll(data) {
     if (x > x1) x1 = x;
   }
 
-  // If there were no (valid) points, inherit the existing extent.
-  if (x1 < x0) x0 = this._x0, x1 = this._x1;
+  // If there were no (valid) points, abort.
+  if (x0 > x1) return this;
 
   // Expand the tree to cover the new points.
   this.cover(x0).cover(x1);

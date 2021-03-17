@@ -9,7 +9,7 @@ tape("binarytree.extent(extent) extends the extent", function(test) {
 tape("binarytree.extent() can be inferred by binarytree.cover", function(test) {
   var q = d3_binarytree.binarytree();
   test.deepEqual(q.cover(0).extent(), [[0], [1]]);
-  test.deepEqual(q.cover(4).extent(), [[0], [4]]);
+  test.deepEqual(q.cover(4).extent(), [[0], [8]]);
   test.end();
 });
 
@@ -18,7 +18,7 @@ tape("binarytree.extent() can be inferred by binarytree.add", function(test) {
   q.add([0]);
   test.deepEqual(q.extent(), [[0], [1]]);
   q.add([4]);
-  test.deepEqual(q.extent(), [[0], [4]]);
+  test.deepEqual(q.extent(), [[0], [8]]);
   test.end();
 });
 

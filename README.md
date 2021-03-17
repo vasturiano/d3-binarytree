@@ -127,6 +127,26 @@ Visits each [node](#nodes) in the binarytree in pre-order traversal, invoking th
 
 If the *callback* returns true for a given node, then the children of that node are not visited; otherwise, all child nodes are visited. This can be used to quickly visit only parts of the tree, for example when using the [Barnes–Hut approximation](https://en.wikipedia.org/wiki/Barnes–Hut_simulation). Note, however, that child segments are always visited in sibling order: left, right. In cases such as [search](#binarytree_find), visiting siblings in a specific order may be faster.
 
+As an example, the following visits the binarytree and returns all the nodes within a range [xmin, xmax], ignoring segments that cannot possibly contain any such node:
+
+```js
+function search(binarytree, xmin, xmax) {
+  const results = [];
+  binarytree.visit(function(node, x1, x2) {
+    if (!node.length) {
+      do {
+        var d = node.data;
+        if (d[0] >= xmin && d[0] < xmax) {
+          results.push(d);
+        }
+      } while (node = node.next);
+    }
+    return x1 >= xmax || x2 < xmin;
+  });
+  return results;
+}
+```
+
 <a name="binarytree_visitAfter" href="#binarytree_visitAfter">#</a> <i>binarytree</i>.<b>visitAfter</b>(<i>callback</i>)
  [<>](https://github.com/d3/d3-binarytree/blob/master/src/visitAfter.js "Source")
 
