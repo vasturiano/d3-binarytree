@@ -3,7 +3,7 @@ d3-binarytree
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
-[![Dependencies][dependencies-img]][dependencies-url]
+[![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
 Ported version of D3's [Quadtree](https://github.com/d3/d3-quadtree), to use with one-dimensional data structures, by removing the y coordinate.
 
@@ -19,12 +19,10 @@ If you use NPM, `npm install d3-binarytree`. You can also load directly from the
 <script src="https://unpkg.com/d3-binarytree"></script>
 <script>
 
-var binarytree = d3.binarytree();
+const binarytree = d3.binarytree();
 
 </script>
 ```
-
-[Try d3-binarytree in your browser.](https://tonicdev.com/npm/d3-binarytree)
 
 ## API Reference
 
@@ -34,14 +32,14 @@ var binarytree = d3.binarytree();
 Creates a new, empty binarytree with an empty [extent](#binarytree_extent) and the default [*x*-](#binarytree_x)accessor. If *data* is specified, [adds](#binarytree_addAll) the specified array of data to the binarytree. This is equivalent to:
 
 ```js
-var tree = d3.binarytree()
+const tree = d3.binarytree()
     .addAll(data);
 ```
 
 If *x* is also specified, sets the [*x*-](#binarytree_x) accessor to the specified functions before adding the specified array of data to the binarytree, equivalent to:
 
 ```js
-var tree = d3.binarytree()
+const tree = d3.binarytree()
     .x(x)
     .addAll(data);
 ```
@@ -79,7 +77,7 @@ Adds the specified *datum* to the binarytree, deriving its coordinates ⟨*x*⟩
 Adds the specified array of *data* to the binarytree, deriving each element’s coordinates ⟨*x*⟩ using the current [*x*-](#binarytree_x)accessor, and return this binarytree. This is approximately equivalent to calling [*binarytree*.add](#binarytree_add) repeatedly:
 
 ```js
-for (var i = 0, n = data.length; i < n; ++i) {
+for (let i = 0, n = data.length; i < n; ++i) {
   binarytree.add(data[i]);
 }
 ```
@@ -135,7 +133,7 @@ function search(binarytree, xmin, xmax) {
   binarytree.visit(function(node, x1, x2) {
     if (!node.length) {
       do {
-        var d = node.data;
+        const d = node.data;
         if (d[0] >= xmin && d[0] < xmax) {
           results.push(d);
         }
@@ -175,9 +173,9 @@ if (!node.length) do console.log(node.data); while (node = node.next);
 The point’s *x*--coordinate **must not be modified** while the point is in the binarytree. To update a point’s position, [remove](#binarytree_remove) the point and then re-[add](#binarytree_add) it to the binarytree at the new position. Alternatively, you may discard the existing binarytree entirely and create a new one from scratch; this may be more efficient if many of the points have moved.
 
 
-[npm-img]: https://img.shields.io/npm/v/d3-binarytree.svg
+[npm-img]: https://img.shields.io/npm/v/d3-binarytree
 [npm-url]: https://npmjs.org/package/d3-binarytree
-[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-binarytree.svg
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-binarytree
 [build-size-url]: https://bundlephobia.com/result?p=d3-binarytree
-[dependencies-img]: https://img.shields.io/david/vasturiano/d3-binarytree.svg
-[dependencies-url]: https://david-dm.org/vasturiano/d3-binarytree
+[npm-downloads-img]: https://img.shields.io/npm/dt/d3-binarytree
+[npm-downloads-url]: https://www.npmtrends.com/d3-binarytree
