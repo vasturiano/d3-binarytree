@@ -1,50 +1,42 @@
-var tape = require("tape"),
-    d3_binarytree = require("../");
+import assert from "assert";
+import {binarytree} from "../src/index.js";
 
-tape("binarytree.extent(extent) extends the extent", function(test) {
-  test.deepEqual(d3_binarytree.binarytree().extent([[0], [6]]).extent(), [[0], [8]]);
-  test.end();
+it("binarytree.extent(extent) extends the extent", () => {
+  assert.deepStrictEqual(binarytree().extent([[0], [6]]).extent(), [[0], [8]]);
 });
 
-tape("binarytree.extent() can be inferred by binarytree.cover", function(test) {
-  var q = d3_binarytree.binarytree();
-  test.deepEqual(q.cover(0).extent(), [[0], [1]]);
-  test.deepEqual(q.cover(4).extent(), [[0], [8]]);
-  test.end();
+it("binarytree.extent() can be inferred by binarytree.cover", () => {
+  const q = binarytree();
+  assert.deepStrictEqual(q.cover(0).extent(), [[0], [1]]);
+  assert.deepStrictEqual(q.cover(4).extent(), [[0], [8]]);
 });
 
-tape("binarytree.extent() can be inferred by binarytree.add", function(test) {
-  var q = d3_binarytree.binarytree();
+it("binarytree.extent() can be inferred by binarytree.add", () => {
+  const q = binarytree();
   q.add([0]);
-  test.deepEqual(q.extent(), [[0], [1]]);
+  assert.deepStrictEqual(q.extent(), [[0], [1]]);
   q.add([4]);
-  test.deepEqual(q.extent(), [[0], [8]]);
-  test.end();
+  assert.deepStrictEqual(q.extent(), [[0], [8]]);
 });
 
-tape("binarytree.extent(extent) squarifies and centers the specified extent", function(test) {
-  test.deepEqual(d3_binarytree.binarytree().extent([[0], [6]]).extent(), [[0], [8]]);
-  test.end();
+it("binarytree.extent(extent) squarifies and centers the specified extent", () => {
+  assert.deepStrictEqual(binarytree().extent([[0], [6]]).extent(), [[0], [8]]);
 });
 
-tape("binarytree.extent(extent) ignores invalid extents", function(test) {
-  test.equal(d3_binarytree.binarytree().extent([[NaN], [NaN]]).extent(), undefined);
-  test.end();
+it("binarytree.extent(extent) ignores invalid extents", () => {
+  assert.strictEqual(binarytree().extent([[NaN], [NaN]]).extent(), undefined);
 });
 
-tape("binarytree.extent(extent) flips inverted extents", function(test) {
-  test.deepEqual(d3_binarytree.binarytree().extent([[1], [0]]).extent(), [[0], [2]]);
-  test.end();
+it("binarytree.extent(extent) flips inverted extents", () => {
+  assert.deepStrictEqual(binarytree().extent([[1], [0]]).extent(), [[0], [2]]);
 });
 
-tape("binarytree.extent(extent) tolerates partially-valid extents", function(test) {
-  test.deepEqual(d3_binarytree.binarytree().extent([[NaN], [1]]).extent(), [[1], [2]]);
-  test.deepEqual(d3_binarytree.binarytree().extent([[0], [NaN]]).extent(), [[0], [1]]);
-  test.end();
+it("binarytree.extent(extent) tolerates partially-valid extents", () => {
+  assert.deepStrictEqual(binarytree().extent([[NaN], [1]]).extent(), [[1], [2]]);
+  assert.deepStrictEqual(binarytree().extent([[0], [NaN]]).extent(), [[0], [1]]);
 });
 
-tape("binarytree.extent(extent) allows trivial extents", function(test) {
-  test.deepEqual(d3_binarytree.binarytree().extent([[0], [0]]).extent(), [[0], [1]]);
-  test.deepEqual(d3_binarytree.binarytree().extent([[1], [1]]).extent(), [[1], [2]]);
-  test.end();
+it("binarytree.extent(extent) allows trivial extents", () => {
+  assert.deepStrictEqual(binarytree().extent([[0], [0]]).extent(), [[0], [1]]);
+  assert.deepStrictEqual(binarytree().extent([[1], [1]]).extent(), [[1], [2]]);
 });

@@ -1,17 +1,15 @@
-var tape = require("tape"),
-    d3_binarytree = require("../");
+import assert from "assert";
+import {binarytree} from "../src/index.js";
 
-tape("binarytree.size() returns the number of points in the binarytree", function(test) {
-  var q = d3_binarytree.binarytree();
-  test.equal(q.size(), 0);
+it("binarytree.size() returns the number of points in the binarytree", () => {
+  const q = binarytree();
+  assert.strictEqual(q.size(), 0);
   q.add([0]).add([1, 2]);
-  test.equal(q.size(), 2);
-  test.end();
+  assert.strictEqual(q.size(), 2);
 });
 
-tape("binarytree.size() correctly counts coincident nodes", function(test) {
-  var q = d3_binarytree.binarytree();
+it("binarytree.size() correctly counts coincident nodes", () => {
+  const q = binarytree();
   q.add([0]).add([0]);
-  test.equal(q.size(), 2);
-  test.end();
+  assert.strictEqual(q.size(), 2);
 });

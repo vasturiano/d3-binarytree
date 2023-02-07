@@ -1,5 +1,5 @@
 export default function(d) {
-  var x = +this._x.call(null, d);
+  const x = +this._x.call(null, d);
   return add(this.cover(x), x, d);
 }
 
@@ -39,14 +39,14 @@ function add(tree, x, d) {
 }
 
 export function addAll(data) {
-  var i, n = data.length,
-      x,
-      xz = new Array(n),
-      x0 = Infinity,
+  if (!Array.isArray(data)) data = Array.from(data);
+  const n = data.length;
+  const xz = new Float64Array(n);
+  let x0 = Infinity,
       x1 = -Infinity;
 
   // Compute the points and their extent.
-  for (i = 0; i < n; ++i) {
+  for (let i = 0, x; i < n; ++i) {
     if (isNaN(x = +this._x.call(null, data[i]))) continue;
     xz[i] = x;
     if (x < x0) x0 = x;
@@ -60,7 +60,7 @@ export function addAll(data) {
   this.cover(x0).cover(x1);
 
   // Add the new points.
-  for (i = 0; i < n; ++i) {
+  for (let i = 0; i < n; ++i) {
     add(this, xz[i], data[i]);
   }
 

@@ -1,4 +1,4 @@
-import Half from "./half";
+import Half from "./half.js";
 
 export default function(callback) {
   var halves = [], next = [], q;

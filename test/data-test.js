@@ -1,17 +1,15 @@
-var tape = require("tape"),
-    d3_binarytree = require("../");
+import assert from "assert";
+import {binarytree} from "../src/index.js";
 
-tape("binarytree.data() returns an array of data in the binarytree", function(test) {
-  var q = d3_binarytree.binarytree();
-  test.deepEqual(q.data(), []);
+it("binarytree.data() returns an array of data in the binarytree", () => {
+  const q = binarytree();
+  assert.deepStrictEqual(q.data(), []);
   q.add([0]).add([1, 2]);
-  test.deepEqual(q.data(), [[0], [1, 2]]);
-  test.end();
+  assert.deepStrictEqual(q.data(), [[0], [1, 2]]);
 });
 
-tape("binarytree.data() correctly handles coincident nodes", function(test) {
-  var q = d3_binarytree.binarytree();
+it("binarytree.data() correctly handles coincident nodes", () => {
+  const q = binarytree();
   q.add([0]).add([0]);
-  test.deepEqual(q.data(), [[0], [0]]);
-  test.end();
+  assert.deepStrictEqual(q.data(), [[0], [0]]);
 });

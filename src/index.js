@@ -1,1 +1,1 @@
-export {default as binarytree} from "./binarytree";
+export {default as binarytree} from "./binarytree.js";
